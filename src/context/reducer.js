@@ -13,7 +13,8 @@ export const initialAppData = {
 
 export const TYPES = {
   UPDATE: "UPDATE",
-  RESTE: "RESET",
+  RESET: "RESET",
+  ADD_TODO: "ADD_TODO",
   CHANGE_AGE: "CHANGE_AGE",
   CHANGE_FOLLOWER: "CHANGE_FOLLOWER",
 };
@@ -31,6 +32,14 @@ export const appDataReducer = (state, action) => {
       return {
         ...state,
         follower: data,
+      };
+    case TYPES.ADD_TODO:
+      if (!state.todos) {
+        state.todos = [];
+      }
+      return {
+        ...state,
+        todos: [...state.todos, action.data],
       };
     case TYPES.RESET:
       break;

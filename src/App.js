@@ -5,6 +5,7 @@ import Parent from "./Parent";
 import CheckImmutable from "./CheckImmutable";
 import { TYPES } from "./context/reducer";
 import CheckSecondUseContext from "./CheckSecondUseContext";
+import LoadAsynData from "./LoadAsynData";
 
 function App() {
   const { appData, dispatch } = React.useContext(MyContext);
@@ -16,7 +17,7 @@ function App() {
 
   console.log("----------");
   // console.log("App loading with data from context", data.exampleData);
-  console.log("data from reducer", appData);
+  console.log("App - data from reducer", appData);
 
   const changeAge = () => {
     dispatch({
@@ -45,6 +46,8 @@ function App() {
       <CheckImmutable />
       {/* [learn] This component also uses useContext -> when data change, it will render again although I use memo() for props*/}
       <CheckSecondUseContext />
+      {/* When load data async, it changes Context, so render from top to down, from App to LoadAsynData */}
+      <LoadAsynData />
     </div>
   );
 }
