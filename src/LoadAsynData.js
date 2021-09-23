@@ -15,10 +15,15 @@ const LoadAsynData = () => {
         dispatch({ type: TYPES.ADD_TODO, data: json });
       });
   };
+
+  const handleChangeFirstTodo = () => {
+    dispatch({ type: TYPES.TOGGLE_FIRST_TODO });
+  };
   return (
     <div>
       <p>Load Async data</p>
       <button onClick={handleClick}>Load Data</button>
+      <button onClick={handleChangeFirstTodo}>Change the first todo</button>
     </div>
   );
 };
