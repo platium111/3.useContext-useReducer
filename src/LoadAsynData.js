@@ -16,6 +16,7 @@ const LoadAsynData = () => {
       });
   };
 
+  // [learn] even change nested property inside object and object inside array, context data always change and render every components using it
   const handleChangeFirstTodo = () => {
     dispatch({ type: TYPES.TOGGLE_FIRST_TODO });
   };
