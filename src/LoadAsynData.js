@@ -9,7 +9,7 @@ const LoadAsynData = () => {
 
   const handleLoadData = () => {
     fetch("https://jsonplaceholder.typicode.com/todos/1")
-      .then(async (response) => {
+      .then((response) => {
         // [leanr] response is type of Response which has body, status, headers and json method
         // .json() return Promise
         console.log("real response", response);
@@ -30,7 +30,7 @@ const LoadAsynData = () => {
     const jsonReponse = await response.json();
     console.log("handleClickUsingAwait response", jsonReponse);
 
-    dispatch({ type: TYPES.ADD_TODO, data: jsonReponse });
+    dispatch({ type: TYPES.ADD_TODO, data: jsonReponse }); 
   };
 
   // [learn] even change nested property inside object and object inside array, context data always change and render every components using it

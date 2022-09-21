@@ -1,8 +1,8 @@
 import React, { memo } from "react";
-import { MyContext } from "./context";
+import { useMyContext } from "./context";
 
 const CheckImmutable = () => {
-  const { appData, dispatch } = React.useContext(MyContext);
+  const { appData, dispatch } = useMyContext();
 
   // test 1
   const originObj = {
@@ -10,6 +10,7 @@ const CheckImmutable = () => {
       {
         name: "fgu",
         salary: 120000,
+        secondTest: { random: 111 },
       },
     ],
     name: "Gill",
@@ -24,13 +25,20 @@ const CheckImmutable = () => {
   // test 2 : using ...
   const people = [{ age: 11 }, { age: 15 }];
   const anotherPeople = [...people];
+  // Đây là lý do tại sao khi update whole state, whole state sẽ thay đổi
+  // nếu update property inside state, nó sẽ kiểm tra whole object trước
+  // sau đó kiểm tra property, nếu thay đổi nó sẽ thông báo để render
   console.log(
-    "test2: speread operator people ",
+    "CheckImmutable - test2: spread operator people -> check whole element ",
+    anotherPeople === people
+  );
+  console.log(
+    "CheckImmutable - test2: spread operator people -> check first element ",
     anotherPeople[0] === people[0]
   );
   console.log(
-    "test2: speread operator first object inside people ",
-    anotherPeople[0] === people[0]
+    "CheckImmutable - test2: spread operator first object -> check nested object ",
+    anotherPeople[0].secondTest === people[0].secondTest
   );
   return <p>Check Immutable</p>;
 };

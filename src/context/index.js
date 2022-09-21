@@ -1,9 +1,9 @@
 import React, { useReducer } from "react";
 import { appDataReducer, initialAppData } from "./reducer";
 
-const MyContext = React.createContext();
+export const MyContext = React.createContext();
 
-const MyContextProvider = ({ children }) => {
+export const MyContextProvider = ({ children }) => {
   const [exampleData, setExampleData] = React.useState("No comment");
 
   const [appData, dispatch] = useReducer(appDataReducer, initialAppData);
@@ -18,4 +18,7 @@ const MyContextProvider = ({ children }) => {
   );
 };
 
-export { MyContext, MyContextProvider };
+export const useMyContext = () => {
+  const { appData, dispatch } = React.useContext(MyContext);
+  return { appData, dispatch };
+};
