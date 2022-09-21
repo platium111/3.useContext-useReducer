@@ -10,7 +10,7 @@ const LoadAsynData = () => {
   const handleLoadData = () => {
     fetch("https://jsonplaceholder.typicode.com/todos/1")
       .then((response) => {
-        // [leanr] response is type of Response which has body, status, headers and json method
+        // [learn] response is type of Response which has body, status, headers and json method
         // .json() return Promise
         console.log("real response", response);
         return response.json();
@@ -21,7 +21,7 @@ const LoadAsynData = () => {
       });
   };
 
-  // [learn] with await, using 2 times as well, can't merge in one because at that time
+  // [learn] with await, using 2 times as well, can't merge in one
   const handleLoadDataAsync = async () => {
     const response = await fetch(
       "https://jsonplaceholder.typicode.com/todos/1"
@@ -30,13 +30,14 @@ const LoadAsynData = () => {
     const jsonReponse = await response.json();
     console.log("handleClickUsingAwait response", jsonReponse);
 
-    dispatch({ type: TYPES.ADD_TODO, data: jsonReponse }); 
+    dispatch({ type: TYPES.ADD_TODO, data: jsonReponse });
   };
 
   // [learn] even change nested property inside object and object inside array, context data always change and render every components using it
   const handleChangeFirstTodo = () => {
     dispatch({ type: TYPES.TOGGLE_FIRST_TODO });
   };
+
   return (
     <div>
       <p>Load Async data</p>
